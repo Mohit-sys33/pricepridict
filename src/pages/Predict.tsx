@@ -11,9 +11,16 @@ import { supabase } from "@/integrations/supabase/client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Loader2 } from "lucide-react";
+import LocationAutocomplete from "@/components/LocationAutocomplete";
+
+interface LocationData {
+  state: string;
+  district: string;
+  city: string;
+}
 
 interface PredictionFormData {
-  location: string;
+  location: LocationData;
   area: string;
   bhk: string;
   bathroom: string;
@@ -37,7 +44,7 @@ const Predict = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<PredictionFormData>({
-    location: "",
+    location: { state: "", district: "", city: "" },
     area: "",
     bhk: "",
     bathroom: "",
@@ -60,7 +67,7 @@ const Predict = () => {
     e.preventDefault();
     
     // Validation
-    if (!formData.location || !formData.area || !formData.bhk || !formData.bathroom) {
+    if (!formData.location.state || !formData.location.city || !formData.area || !formData.bhk || !formData.bathroom) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields",
@@ -118,22 +125,12 @@ const Predict = () => {
                 <div className="space-y-4">
                   <h3 className="font-semibold text-lg">Basic Information</h3>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="location">Location *</Label>
-                      <Select value={formData.location} onValueChange={(value) => setFormData({ ...formData, location: value })}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select city" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Delhi">Delhi</SelectItem>
-                          <SelectItem value="Mumbai">Mumbai</SelectItem>
-                          <SelectItem value="Kolkata">Kolkata</SelectItem>
-                          <SelectItem value="Chennai">Chennai</SelectItem>
-                          <SelectItem value="Bengaluru">Bengaluru</SelectItem>
-                          <SelectItem value="Hyderabad">Hyderabad</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    <LocationAutocomplete
+                      value={formData.location.state ? formData.location : null}
+                      onLocationSelect={(location) =>
+                        setFormData({ ...formData, location })
+                      }
+                    />
 
                     <div className="space-y-2">
                       <Label htmlFor="area">Area (sq ft) *</Label>
