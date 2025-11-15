@@ -45,7 +45,7 @@ const Predict = () => {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<PredictionFormData>({
-    location: { state: "", district: "", city: "" },
+    location: { state: "", district: "", city: "", area: "" },
     area: "",
     bhk: "",
     bathroom: "",
