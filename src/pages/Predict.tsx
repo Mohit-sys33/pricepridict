@@ -17,6 +17,7 @@ interface LocationData {
   state: string;
   district: string;
   city: string;
+  area: string;
 }
 
 interface PredictionFormData {

@@ -14,12 +14,13 @@ const Home = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto">
+      <section className="relative pt-24 pb-16 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-overlay opacity-50"></div>
+        <div className="container mx-auto relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 animate-fade-up">
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Predict Your <span className="text-primary">Dream Home's</span> Price
+                Predict Your <span className="bg-gradient-hero bg-clip-text text-transparent">Dream Home's</span> Price
               </h1>
               <p className="text-lg text-muted-foreground">
                 Get accurate house price predictions powered by advanced machine learning algorithms. 
@@ -28,7 +29,7 @@ const Home = () => {
               <div className="flex gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-accent hover:bg-accent-light text-accent-foreground shadow-medium"
+                  className="bg-gradient-accent hover:shadow-accent text-accent-foreground shadow-medium transition-all hover:scale-105"
                   onClick={() => navigate("/predict")}
                 >
                   <Calculator className="w-5 h-5 mr-2" />
@@ -37,6 +38,7 @@ const Home = () => {
                 <Button 
                   size="lg" 
                   variant="outline"
+                  className="hover:bg-secondary hover:scale-105 transition-all"
                   onClick={() => navigate("/about")}
                 >
                   Learn More
@@ -44,15 +46,16 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="relative">
+            <div className="relative animate-fade-in">
+              <div className="absolute inset-0 bg-gradient-hero opacity-10 rounded-2xl blur-3xl"></div>
               <img 
                 src={heroImage} 
                 alt="Modern house architecture" 
-                className="rounded-2xl shadow-large w-full h-auto"
+                className="rounded-2xl shadow-large w-full h-auto relative z-10 hover:shadow-glow transition-all duration-500"
               />
-              <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-4 rounded-xl shadow-large">
+              <div className="absolute -bottom-6 -left-6 bg-gradient-hero text-primary-foreground p-6 rounded-xl shadow-glow animate-float">
                 <p className="text-sm font-semibold">AI-Powered</p>
-                <p className="text-2xl font-bold">98% Accuracy</p>
+                <p className="text-3xl font-bold">98% Accuracy</p>
               </div>
             </div>
           </div>

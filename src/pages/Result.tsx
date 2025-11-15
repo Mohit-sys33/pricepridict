@@ -64,7 +64,7 @@ const Result = () => {
                   <TrendingUp className="w-5 h-5 text-primary" />
                 </div>
                 <p className="text-muted-foreground max-w-md mx-auto">
-                  Based on current market trends and property features in {formData.location.city}, {formData.location.district}
+                  Based on current market trends and property features in {formData.location.area}, {formData.location.city}
                 </p>
               </div>
             </CardContent>
@@ -85,7 +85,7 @@ const Result = () => {
                     <MapPin className="w-5 h-5 text-primary mt-1" />
                     <div>
                       <p className="text-sm text-muted-foreground">Location</p>
-                      <p className="font-semibold">{formData.location.city}, {formData.location.district}, {formData.location.state}</p>
+                      <p className="font-semibold">{formData.location.area}, {formData.location.city}, {formData.location.district}</p>
                     </div>
                   </div>
                   
