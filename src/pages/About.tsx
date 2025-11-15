@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Database, LineChart, Shield } from "lucide-react";
+import aboutTeam from "@/assets/about-team.jpg";
+import propertyShowcase from "@/assets/property-showcase.jpg";
 
 const About = () => {
   return (
@@ -10,11 +12,20 @@ const About = () => {
       
       <div className="container mx-auto px-4 pt-24 pb-16">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-in">
             <h1 className="text-4xl font-bold mb-4">About PricePredict</h1>
             <p className="text-lg text-muted-foreground">
               Advanced AI-powered house price prediction system for the Indian real estate market
             </p>
+          </div>
+
+          {/* Team Illustration */}
+          <div className="mb-12 rounded-2xl overflow-hidden shadow-large animate-fade-up">
+            <img 
+              src={aboutTeam} 
+              alt="Our team working with property data and technology" 
+              className="w-full h-auto"
+            />
           </div>
 
           <Card className="shadow-large mb-8">
@@ -92,6 +103,27 @@ const About = () => {
               </CardContent>
             </Card>
           </div>
+
+          {/* Property Showcase Visual */}
+          <Card className="shadow-large mb-8 overflow-hidden">
+            <CardContent className="pt-6 space-y-4">
+              <div>
+                <h2 className="text-2xl font-bold mb-3">Why Choose Us?</h2>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  We combine cutting-edge technology with deep understanding of the Indian real estate 
+                  market to provide you with the most reliable price predictions. Our commitment is to 
+                  empower your property decisions with data-driven insights.
+                </p>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-medium">
+                <img 
+                  src={propertyShowcase} 
+                  alt="Modern luxury property showcase" 
+                  className="w-full h-auto"
+                />
+              </div>
+            </CardContent>
+          </Card>
 
           <Card className="shadow-large bg-gradient-hero text-primary-foreground">
             <CardContent className="pt-6">
