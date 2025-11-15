@@ -98,7 +98,7 @@ const LocationAutocomplete = ({ onLocationSelect, value }: LocationAutocompleteP
     setDisplayValue("");
     setFilteredLocations([]);
     setIsOpen(false);
-    onLocationSelect({ state: "", district: "", city: "" });
+    onLocationSelect({ state: "", district: "", city: "", area: "" });
     inputRef.current?.focus();
   };
 
