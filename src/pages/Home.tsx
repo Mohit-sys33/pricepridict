@@ -1,13 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calculator, TrendingUp, Award, Shield } from "lucide-react";
+import { Calculator, TrendingUp, Award, Shield, LogIn } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-house.jpg";
+import { useAuth } from "@/hooks/useAuth";
 
 const Home = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -27,14 +29,25 @@ const Home = () => {
                 Make informed decisions with confidence.
               </p>
               <div className="flex gap-4">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-accent hover:shadow-accent text-accent-foreground shadow-medium transition-all hover:scale-105"
-                  onClick={() => navigate("/predict")}
-                >
-                  <Calculator className="w-5 h-5 mr-2" />
-                  Predict Now
-                </Button>
+                {user ? (
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-accent hover:shadow-accent text-accent-foreground shadow-medium transition-all hover:scale-105"
+                    onClick={() => navigate("/predict")}
+                  >
+                    <Calculator className="w-5 h-5 mr-2" />
+                    Predict Now
+                  </Button>
+                ) : (
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-accent hover:shadow-accent text-accent-foreground shadow-medium transition-all hover:scale-105"
+                    onClick={() => navigate("/auth")}
+                  >
+                    <LogIn className="w-5 h-5 mr-2" />
+                    Login to Get Started
+                  </Button>
+                )}
                 <Button 
                   size="lg" 
                   variant="outline"
