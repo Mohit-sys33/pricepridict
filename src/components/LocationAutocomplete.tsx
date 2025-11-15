@@ -8,6 +8,7 @@ interface Location {
   state: string;
   district: string;
   city: string;
+  area: string;
 }
 
 interface LocationAutocompleteProps {
@@ -125,7 +126,7 @@ const LocationAutocomplete = ({ onLocationSelect, value }: LocationAutocompleteP
           ref={inputRef}
           id="location-search"
           type="text"
-          placeholder="Search location (State / District / City)"
+          placeholder="Search location (State / District / City / Area)"
           value={displayValue}
           onChange={handleInputChange}
           onFocus={() => {
