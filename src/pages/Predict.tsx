@@ -86,6 +86,35 @@ const Predict = () => {
 
       if (error) throw error;
 
+      // Save prediction to history
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user && data.predictedPrice) {
+        await supabase.from("prediction_history").insert({
+          user_id: user.id,
+          location_state: formData.location.state,
+          location_district: formData.location.district || null,
+          location_city: formData.location.city,
+          location_area: formData.location.area,
+          area: parseFloat(formData.area),
+          bhk: parseInt(formData.bhk),
+          bathroom: parseInt(formData.bathroom),
+          balcony: formData.balcony ? parseInt(formData.balcony) : null,
+          furnishing: formData.furnishing || null,
+          parking: formData.parking ? parseInt(formData.parking) : null,
+          house_age: formData.houseAge ? parseInt(formData.houseAge) : null,
+          house_type: formData.houseType || null,
+          floor_num: formData.floorNum ? parseInt(formData.floorNum) : null,
+          total_floors: formData.totalFloors ? parseInt(formData.totalFloors) : null,
+          lift: formData.lift,
+          security: formData.security,
+          swimming_pool: formData.swimmingPool,
+          gym: formData.gym,
+          power_backup: formData.powerBackup,
+          water_supply: formData.waterSupply,
+          predicted_price: data.predictedPrice,
+        });
+      }
+
       // Navigate to result page with prediction data
       navigate("/result", { state: { prediction: data, formData } });
     } catch (error) {
