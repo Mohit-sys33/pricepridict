@@ -8,6 +8,8 @@ import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
+import contactHero from "@/assets/contact-hero.jpg";
+import serviceIllustration from "@/assets/service-illustration.jpg";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -47,11 +49,21 @@ const Contact = () => {
       
       <div className="container mx-auto px-4 pt-24 pb-16">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-            <p className="text-lg text-muted-foreground">
-              Have questions? We'd love to hear from you.
-            </p>
+          {/* Hero Image Section */}
+          <div className="relative mb-12 rounded-2xl overflow-hidden shadow-large">
+            <img 
+              src={contactHero} 
+              alt="Contact Us" 
+              className="w-full h-64 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/60 flex items-center justify-center">
+              <div className="text-center text-primary-foreground">
+                <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
+                <p className="text-xl">
+                  Have questions? We'd love to hear from you.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -86,14 +98,15 @@ const Contact = () => {
             </Card>
           </div>
 
-          <Card className="shadow-large">
-            <CardHeader>
-              <CardTitle>Send us a Message</CardTitle>
-              <CardDescription>
-                Fill out the form below and we'll get back to you as soon as possible
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <Card className="shadow-large">
+              <CardHeader>
+                <CardTitle>Send us a Message</CardTitle>
+                <CardDescription>
+                  Fill out the form below and we'll get back to you as soon as possible
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -149,6 +162,16 @@ const Contact = () => {
               </form>
             </CardContent>
           </Card>
+
+          {/* Service Illustration */}
+          <Card className="shadow-large overflow-hidden">
+            <img 
+              src={serviceIllustration} 
+              alt="Our Services" 
+              className="w-full h-full object-cover"
+            />
+          </Card>
+        </div>
         </div>
       </div>
 

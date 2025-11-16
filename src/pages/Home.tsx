@@ -5,6 +5,8 @@ import { Calculator, TrendingUp, Award, Shield, LogIn } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-house.jpg";
+import propertyShowcase from "@/assets/property-showcase.jpg";
+import patternBg from "@/assets/pattern-bg.jpg";
 import { useAuth } from "@/hooks/useAuth";
 
 const Home = () => {
@@ -76,14 +78,21 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            Why Choose PricePredict?
-          </h2>
-          
-          <div className="grid md:grid-cols-4 gap-6">
-            <Card className="border-2 hover:border-primary transition-colors">
+      <section className="py-16 px-4 relative">
+        <div className="absolute inset-0 opacity-30">
+          <img src={patternBg} alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="container mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Why Choose PricePredict?
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Experience the power of AI-driven real estate valuation
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Card className="border-2 hover:border-primary transition-colors hover:shadow-medium">
               <CardContent className="pt-6 text-center space-y-3">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                   <Calculator className="w-6 h-6 text-primary" />
@@ -135,17 +144,21 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-hero text-primary-foreground">
-        <div className="container mx-auto text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold">
+      <section className="py-16 px-4 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={propertyShowcase} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/80 to-accent/80"></div>
+        </div>
+        <div className="container mx-auto text-center space-y-6 relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
             Ready to Discover Your Home's Worth?
           </h2>
-          <p className="text-lg opacity-90 max-w-2xl mx-auto">
+          <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto">
             Get started now and receive an instant, accurate price prediction for any property in India
           </p>
           <Button 
             size="lg" 
-            className="bg-accent hover:bg-accent-light text-accent-foreground shadow-large"
+            className="bg-accent hover:bg-accent-light text-accent-foreground shadow-large hover:shadow-accent transition-all hover:scale-105"
             onClick={() => navigate("/predict")}
           >
             Start Prediction
