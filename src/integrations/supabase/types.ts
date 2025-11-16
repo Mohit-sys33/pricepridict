@@ -14,6 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
+      prediction_history: {
+        Row: {
+          area: number
+          balcony: number | null
+          bathroom: number
+          bhk: number
+          created_at: string
+          floor_num: number | null
+          furnishing: string | null
+          gym: boolean | null
+          house_age: number | null
+          house_type: string | null
+          id: string
+          lift: boolean | null
+          location_area: string
+          location_city: string
+          location_district: string | null
+          location_state: string
+          parking: number | null
+          power_backup: boolean | null
+          predicted_price: number
+          security: boolean | null
+          swimming_pool: boolean | null
+          total_floors: number | null
+          user_id: string
+          water_supply: boolean | null
+        }
+        Insert: {
+          area: number
+          balcony?: number | null
+          bathroom: number
+          bhk: number
+          created_at?: string
+          floor_num?: number | null
+          furnishing?: string | null
+          gym?: boolean | null
+          house_age?: number | null
+          house_type?: string | null
+          id?: string
+          lift?: boolean | null
+          location_area: string
+          location_city: string
+          location_district?: string | null
+          location_state: string
+          parking?: number | null
+          power_backup?: boolean | null
+          predicted_price: number
+          security?: boolean | null
+          swimming_pool?: boolean | null
+          total_floors?: number | null
+          user_id: string
+          water_supply?: boolean | null
+        }
+        Update: {
+          area?: number
+          balcony?: number | null
+          bathroom?: number
+          bhk?: number
+          created_at?: string
+          floor_num?: number | null
+          furnishing?: string | null
+          gym?: boolean | null
+          house_age?: number | null
+          house_type?: string | null
+          id?: string
+          lift?: boolean | null
+          location_area?: string
+          location_city?: string
+          location_district?: string | null
+          location_state?: string
+          parking?: number | null
+          power_backup?: boolean | null
+          predicted_price?: number
+          security?: boolean | null
+          swimming_pool?: boolean | null
+          total_floors?: number | null
+          user_id?: string
+          water_supply?: boolean | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string

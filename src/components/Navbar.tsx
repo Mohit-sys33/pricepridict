@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/NavLink";
-import { Home, Calculator, Info, Mail, LogOut, User, LayoutDashboard } from "lucide-react";
+import { Home, Calculator, Info, Mail, LogOut, User, LayoutDashboard, TrendingUp } from "lucide-react";
 import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -49,7 +49,17 @@ const Navbar = () => {
               <Calculator className="w-4 h-4" />
               Predict Price
             </NavLink>
-            <NavLink 
+            {user && (
+              <NavLink 
+                to="/analytics" 
+                className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+                activeClassName="text-primary font-semibold"
+              >
+                <TrendingUp className="w-4 h-4" />
+                Analytics
+              </NavLink>
+            )}
+            <NavLink
               to="/about" 
               className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
               activeClassName="text-primary font-semibold"
