@@ -11,6 +11,8 @@ import Result from "./pages/Result";
 import Analytics from "./pages/Analytics";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Companies from "./pages/Companies";
+import CompanyProfile from "./pages/CompanyProfile";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -31,6 +33,8 @@ const App = () => (
           <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/companies" element={<Companies />} />
+          <Route path="/company/:id" element={<CompanyProfile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

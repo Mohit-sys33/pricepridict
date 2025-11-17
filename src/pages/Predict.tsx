@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -32,6 +33,7 @@ interface PredictionFormData {
   houseType: string;
   floorNum: string;
   totalFloors: string;
+  companyId: string;
   lift: boolean;
   security: boolean;
   swimmingPool: boolean;
@@ -56,12 +58,26 @@ const Predict = () => {
     houseType: "",
     floorNum: "",
     totalFloors: "",
+    companyId: "",
     lift: false,
     security: false,
     swimmingPool: false,
     gym: false,
     powerBackup: false,
     waterSupply: false,
+  });
+
+  const { data: companies } = useQuery({
+    queryKey: ["companies"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("companies")
+        .select("*")
+        .order("name");
+      
+      if (error) throw error;
+      return data;
+    },
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,6 +121,7 @@ const Predict = () => {
           house_type: formData.houseType || null,
           floor_num: formData.floorNum ? parseInt(formData.floorNum) : null,
           total_floors: formData.totalFloors ? parseInt(formData.totalFloors) : null,
+          company_id: formData.companyId || null,
           lift: formData.lift,
           security: formData.security,
           swimming_pool: formData.swimmingPool,
@@ -297,6 +314,22 @@ const Predict = () => {
                         value={formData.totalFloors}
                         onChange={(e) => setFormData({ ...formData, totalFloors: e.target.value })}
                       />
+                    </div>
+
+                    <div className="space-y-2 md:col-span-2">
+                      <Label htmlFor="company">Company/Builder/Agency</Label>
+                      <Select value={formData.companyId} onValueChange={(value) => setFormData({ ...formData, companyId: value })}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select company (optional)" />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-[300px]">
+                          {companies?.map((company) => (
+                            <SelectItem key={company.id} value={company.id}>
+                              {company.name} ({company.type})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                 </div>
