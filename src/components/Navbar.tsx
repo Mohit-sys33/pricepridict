@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/NavLink";
-import { Home, Calculator, Info, Mail, LogOut, User, LayoutDashboard, TrendingUp } from "lucide-react";
+import { Home, Calculator, Info, Mail, LogOut, User, LayoutDashboard, TrendingUp, Building2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import {
@@ -66,6 +66,14 @@ const Navbar = () => {
             >
               <Info className="w-4 h-4" />
               About
+            </NavLink>
+            <NavLink
+              to="/companies" 
+              className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+              activeClassName="text-primary font-semibold"
+            >
+              <Building2 className="w-4 h-4" />
+              Companies
             </NavLink>
             <NavLink 
               to="/contact" 

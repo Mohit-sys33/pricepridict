@@ -14,12 +14,40 @@ export type Database = {
   }
   public: {
     Tables: {
+      companies: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          logo_url: string | null
+          name: string
+          type: Database["public"]["Enums"]["company_type"]
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          logo_url?: string | null
+          name: string
+          type: Database["public"]["Enums"]["company_type"]
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          logo_url?: string | null
+          name?: string
+          type?: Database["public"]["Enums"]["company_type"]
+        }
+        Relationships: []
+      }
       prediction_history: {
         Row: {
           area: number
           balcony: number | null
           bathroom: number
           bhk: number
+          company_id: string | null
           created_at: string
           floor_num: number | null
           furnishing: string | null
@@ -46,6 +74,7 @@ export type Database = {
           balcony?: number | null
           bathroom: number
           bhk: number
+          company_id?: string | null
           created_at?: string
           floor_num?: number | null
           furnishing?: string | null
@@ -72,6 +101,7 @@ export type Database = {
           balcony?: number | null
           bathroom?: number
           bhk?: number
+          company_id?: string | null
           created_at?: string
           floor_num?: number | null
           furnishing?: string | null
@@ -93,7 +123,15 @@ export type Database = {
           user_id?: string
           water_supply?: boolean | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "prediction_history_company_id_fkey"
+            columns: ["company_id"]
+            isOneToOne: false
+            referencedRelation: "companies"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -130,7 +168,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      company_type: "builder" | "agency" | "platform"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -257,6 +295,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      company_type: ["builder", "agency", "platform"],
+    },
   },
 } as const
