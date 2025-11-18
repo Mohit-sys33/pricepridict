@@ -267,7 +267,7 @@ const CompanyProfile = () => {
                     </div>
                   </div>
 
-                  <Button className="w-full">View Details</Button>
+                  <Button className="w-full" onClick={() => navigate(`/property/${property.id}`)}>View Details</Button>
                 </CardContent>
               </Card>
             ))}
